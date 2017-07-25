@@ -665,7 +665,6 @@ user_pref("security.sri.enable",				true);
 // TODO: https://github.com/pyllyukko/user.js/issues/94, commented-out XOriginPolicy/XOriginTrimmingPolicy = 2 prefs
 user_pref("network.http.referer.spoofSource",			false); // to support Google Hangouts web app (https://github.com/pyllyukko/user.js/issues/328#issuecomment-317545672)
 
-
 // PREF: Don't send referer headers when following links across different domains (disabled)
 // https://github.com/pyllyukko/user.js/issues/227
 user_pref("network.http.referer.XOriginPolicy",		1); // to support Google Hangouts web app (https://github.com/pyllyukko/user.js/issues/328#issuecomment-317545672)
