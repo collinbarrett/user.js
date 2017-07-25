@@ -231,7 +231,7 @@ user_pref("javascript.use_us_english_locale",			true);
 
 // PREF: Do not submit invalid URIs entered in the address bar to the default search engine
 // http://kb.mozillazine.org/Keyword.enabled
-user_pref("keyword.enabled",					false);
+user_pref("keyword.enabled",					true); // to allow searching from location bar
 
 // PREF: Don't trim HTTP off of URLs in the address bar.
 // https://bugzilla.mozilla.org/show_bug.cgi?id=665580
@@ -298,7 +298,7 @@ user_pref("gfx.font_rendering.opentype_svg.enabled",		false);
 // NOTICE: Disabling SVG support breaks many UI elements on many sites
 // https://bugzilla.mozilla.org/show_bug.cgi?id=1216893
 // https://github.com/iSECPartners/publications/raw/master/reports/Tor%20Browser%20Bundle/Tor%20Browser%20Bundle%20-%20iSEC%20Deliverable%201.3.pdf#16
-user_pref("svg.disabled", true);
+user_pref("svg.disabled", false); // to fix YouTube playback controls bar
 
 
 // PREF: Disable video stats to reduce fingerprinting threat
@@ -370,7 +370,7 @@ user_pref("extensions.getAddons.cache.enabled",			false);
 
 // PREF: Opt-out of themes (Persona) updates
 // https://support.mozilla.org/t5/Firefox/how-do-I-prevent-autoamtic-updates-in-a-50-user-environment/td-p/144287
-user_pref("lightweightThemes.update.enabled",			false);
+user_pref("lightweightThemes.update.enabled",			true); // to allow auto update of themes
 
 // PREF: Disable Flash Player NPAPI plugin
 // http://kb.mozillazine.org/Flash_plugin
@@ -622,7 +622,7 @@ user_pref("browser.aboutHomeSnippets.updateUrl",		"");
 
 // PREF: Never check updates for search engines
 // https://support.mozilla.org/en-US/kb/how-stop-firefox-making-automatic-connections#w_auto-update-checking
-user_pref("browser.search.update",				false);
+user_pref("browser.search.update",				true); // to allow auto update of search engines
 
 /******************************************************************************
  * SECTION: HTTP                                                              *
@@ -663,11 +663,12 @@ user_pref("security.sri.enable",				true);
 // NOTICE: Spoofing referers breaks visualisation of 3rd-party sites on the Lightbeam addon
 // NOTICE: Spoofing referers disables CSRF protection on some login pages not implementing origin-header/cookie+token based CSRF protection
 // TODO: https://github.com/pyllyukko/user.js/issues/94, commented-out XOriginPolicy/XOriginTrimmingPolicy = 2 prefs
-user_pref("network.http.referer.spoofSource",			true);
+user_pref("network.http.referer.spoofSource",			false); // to support Google Hangouts web app (https://github.com/pyllyukko/user.js/issues/328#issuecomment-317545672)
+
 
 // PREF: Don't send referer headers when following links across different domains (disabled)
 // https://github.com/pyllyukko/user.js/issues/227
-// user_pref("network.http.referer.XOriginPolicy",		2);
+user_pref("network.http.referer.XOriginPolicy",		1); // to support Google Hangouts web app (https://github.com/pyllyukko/user.js/issues/328#issuecomment-317545672)
 
 // PREF: Accept Only 1st Party Cookies
 // http://kb.mozillazine.org/Network.cookie.cookieBehavior#1
