@@ -663,11 +663,12 @@ user_pref("security.sri.enable",				true);
 // NOTICE: Spoofing referers breaks visualisation of 3rd-party sites on the Lightbeam addon
 // NOTICE: Spoofing referers disables CSRF protection on some login pages not implementing origin-header/cookie+token based CSRF protection
 // TODO: https://github.com/pyllyukko/user.js/issues/94, commented-out XOriginPolicy/XOriginTrimmingPolicy = 2 prefs
-user_pref("network.http.referer.spoofSource",			false); // to support Google Hangouts web app (https://github.com/pyllyukko/user.js/issues/328#issuecomment-317545672)
+user_pref("network.http.referer.spoofSource",			false); // to support Google Hangouts web app (https://github.com/pyllyukko/user.js/issues/328#issuecomment-317545672) and Atlassian products (https://github.com/pyllyukko/user.js/issues/329#issuecomment-317812497)
 
 // PREF: Don't send referer headers when following links across different domains (disabled)
 // https://github.com/pyllyukko/user.js/issues/227
-user_pref("network.http.referer.XOriginPolicy",		1); // to support Google Hangouts web app (https://github.com/pyllyukko/user.js/issues/328#issuecomment-317545672)
+user_pref("network.http.referer.XOriginPolicy",		0); // to support Google Hangouts web app (https://github.com/pyllyukko/user.js/issues/328#issuecomment-317545672) and Atlassian products (https://github.com/pyllyukko/user.js/issues/329#issuecomment-317812497)
+user_pref("network.http.referer.XOriginTrimmingPolicy",		2); // to support Atlassian products (https://github.com/pyllyukko/user.js/issues/329#issuecomment-317812497)
 
 // PREF: Accept Only 1st Party Cookies
 // http://kb.mozillazine.org/Network.cookie.cookieBehavior#1
