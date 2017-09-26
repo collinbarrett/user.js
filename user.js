@@ -19,6 +19,7 @@ user_pref("dom.serviceWorkers.enabled",				false);
 // PREF: Disable Web Workers
 // https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers
 // https://www.w3schools.com/html/html5_webworkers.asp
+// NOTICE: Disabling Web Workers breaks "Download as ZIP" functionality on https://mega.nz/, WhatsApp Web and probably others
 user_pref("dom.workers.enabled",					true); // to support Google Sheets
 
 // PREF: Disable web notifications
@@ -209,10 +210,6 @@ user_pref("browser.search.geoip.url",				"");
 // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept-Language
 user_pref("intl.accept_languages",				"en-us, en");
 
-// PREF: Set Firefox locale to en-US
-// http://kb.mozillazine.org/General.useragent.locale
-user_pref("general.useragent.locale",				"en-US");
-
 // PREF: Don't use OS values to determine locale, force using Firefox locale setting
 // http://kb.mozillazine.org/Intl.locale.matchOS
 user_pref("intl.locale.matchOS",				false);
@@ -340,6 +337,7 @@ user_pref("network.protocol-handler.external.file",		false);
 user_pref("network.protocol-handler.external.about",		false);
 user_pref("network.protocol-handler.external.chrome",		false);
 user_pref("network.protocol-handler.external.blob",		false);
+user_pref("network.protocol-handler.external.data",		false);
 user_pref("network.protocol-handler.expose-all",		false);
 user_pref("network.protocol-handler.expose.http",		true);
 user_pref("network.protocol-handler.expose.https",		true);
@@ -350,6 +348,7 @@ user_pref("network.protocol-handler.expose.file",		true);
 user_pref("network.protocol-handler.expose.about",		true);
 user_pref("network.protocol-handler.expose.chrome",		true);
 user_pref("network.protocol-handler.expose.blob",		true);
+user_pref("network.protocol-handler.expose.data",		true);
 
 /******************************************************************************
  * SECTION: Extensions / plugins                                                       *
@@ -707,7 +706,8 @@ user_pref("browser.cache.offline.enable",			false);
 
 // PREF: Clear history when Firefox closes
 // https://support.mozilla.org/en-US/kb/Clear%20Recent%20History#w_how-do-i-make-firefox-clear-my-history-automatically
-// NOTICE: Installing user.js will **remove your saved passwords** (https://github.com/pyllyukko/user.js/issues/27)
+// NOTICE: Installing user.js will remove your browsing history, caches and local storage.
+// NOTICE: Installing user.js **will remove your saved passwords** (https://github.com/pyllyukko/user.js/issues/27)
 // NOTICE: Clearing open windows on Firefox exit causes 2 windows to open when Firefox starts https://bugzilla.mozilla.org/show_bug.cgi?id=1334945
 user_pref("privacy.sanitize.sanitizeOnShutdown",		true);
 user_pref("privacy.clearOnShutdown.cache",			true);
