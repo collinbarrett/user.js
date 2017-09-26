@@ -298,7 +298,7 @@ user_pref("gfx.font_rendering.opentype_svg.enabled",		false);
 // NOTICE: Disabling SVG support breaks many UI elements on many sites
 // https://bugzilla.mozilla.org/show_bug.cgi?id=1216893
 // https://github.com/iSECPartners/publications/raw/master/reports/Tor%20Browser%20Bundle/Tor%20Browser%20Bundle%20-%20iSEC%20Deliverable%201.3.pdf#16
-user_pref("svg.disabled", false); // to fix YouTube playback controls bar
+user_pref("svg.disabled", true);
 
 
 // PREF: Disable video stats to reduce fingerprinting threat
@@ -663,12 +663,11 @@ user_pref("security.sri.enable",				true);
 // NOTICE: Spoofing referers breaks visualisation of 3rd-party sites on the Lightbeam addon
 // NOTICE: Spoofing referers disables CSRF protection on some login pages not implementing origin-header/cookie+token based CSRF protection
 // TODO: https://github.com/pyllyukko/user.js/issues/94, commented-out XOriginPolicy/XOriginTrimmingPolicy = 2 prefs
-user_pref("network.http.referer.spoofSource",			false); // to support Google Hangouts web app (https://github.com/pyllyukko/user.js/issues/328#issuecomment-317545672) and Atlassian products (https://github.com/pyllyukko/user.js/issues/329#issuecomment-317812497)
+user_pref("network.http.referer.spoofSource",			false); // to support Google Hangouts web app (https://github.com/pyllyukko/user.js/issues/328#issuecomment-317545672)
 
 // PREF: Don't send referer headers when following links across different domains (disabled)
 // https://github.com/pyllyukko/user.js/issues/227
-user_pref("network.http.referer.XOriginPolicy",		0); // to support Google Hangouts web app (https://github.com/pyllyukko/user.js/issues/328#issuecomment-317545672) and Atlassian products (https://github.com/pyllyukko/user.js/issues/329#issuecomment-317812497)
-user_pref("network.http.referer.XOriginTrimmingPolicy",		2); // to support Atlassian products (https://github.com/pyllyukko/user.js/issues/329#issuecomment-317812497)
+user_pref("network.http.referer.XOriginPolicy",		1); // to support Google Hangouts web app (https://github.com/pyllyukko/user.js/issues/328#issuecomment-317545672)
 
 // PREF: Accept Only 1st Party Cookies
 // http://kb.mozillazine.org/Network.cookie.cookieBehavior#1
