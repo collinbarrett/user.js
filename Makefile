@@ -1,3 +1,5 @@
+SHELL=/bin/bash
+
 .PHONY: all
 all: whatdoesitdo tests
 
@@ -37,6 +39,14 @@ FIREFOX_SOURCE_PREFS= \
 	https://hg.mozilla.org/mozilla-central/raw-file/tip/browser/app/profile/channel-prefs.js
 sourceprefs.js:
 	@for SOURCEFILE in $(FIREFOX_SOURCE_PREFS); do wget -nv "$$SOURCEFILE" -O - ; done | egrep "(^pref|^user_pref)" | sort --unique >| $@
+
+TBBBRANCH=tor-browser-52.1.0esr-7.0-2
+000-tor-browser.js:
+	wget -nv "https://gitweb.torproject.org/tor-browser.git/plain/browser/app/profile/000-tor-browser.js?h=$(TBBBRANCH)" -O $@
+
+.PHONY: tbb-diff
+tbb-diff: 000-tor-browser.js
+	diff <(sed -n '/^\(user_\)\?pref/s/^.*pref("\([^"]\+\)",\s*\([^)]\+\).*$$/\1 = \2/p' user.js | sort) <(sed -n '/^\(user_\)\?pref/s/^.*pref("\([^"]\+\)",\s*\([^)]\+\).*$$/\1 = \2/p' 000-tor-browser.js | sort)
 
 ######################
 
