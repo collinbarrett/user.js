@@ -583,6 +583,9 @@ user_pref("extensions.pocket.enabled",				false);
 user_pref("extensions.shield-recipe-client.enabled",		false);
 user_pref("app.shield.optoutstudies.enabled",			false);
 
+// PREF: Disable "Recommended by Pocket" in Firefox Quantum
+user_pref("browser.newtabpage.activity-stream.feeds.section.topstories",	false);
+
 /******************************************************************************
  * SECTION: Automatic connections                                             *
  ******************************************************************************/
@@ -859,6 +862,10 @@ user_pref("browser.download.useDownloadDir",			false);
 // https://support.mozilla.org/en-US/kb/new-tab-page-show-hide-and-customize-top-sites#w_how-do-i-turn-the-new-tab-page-off
 user_pref("browser.newtabpage.enabled",				false);
 user_pref("browser.newtab.url",					"about:blank");
+
+// PREF: Disable Activity Stream
+// https://wiki.mozilla.org/Firefox/Activity_Stream
+user_pref("browser.newtabpage.activity-stream.enabled",		false);
 
 // PREF: Disable new tab tile ads & preload
 // http://www.thewindowsclub.com/disable-remove-ad-tiles-from-firefox
