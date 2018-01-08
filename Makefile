@@ -10,11 +10,19 @@ whatdoesitdo:
 
 # To decrease tests verbosity, comment out unneeded targets
 .PHONY: tests
-tests: sourceprefs.js checkdeprecated stats acorn
+tests: sourceprefs.js checkdeprecated stats acorn bash_syntax shellcheck
 
 .PHONY: acorn
 acorn:
 	acorn --silent user.js
+
+.PHONY: bash_syntax
+bash_syntax:
+	$(foreach i,$(wildcard *.sh),bash -n $(i);)
+
+.PHONY: shellcheck
+shellcheck:
+	shellcheck *.sh
 
 # download and sort all known preferences files from Firefox (mozilla-central) source
 # specify wanted Firefox version/revision below (eg. "tip", "FIREFOX_AURORA_45_BASE", "9577ddeaafd85554c2a855f385a87472a089d5c0"). See https://hg.mozilla.org/mozilla-central/tags
@@ -42,7 +50,7 @@ sourceprefs.js:
 
 TBBBRANCH=tor-browser-52.1.0esr-7.0-2
 000-tor-browser.js:
-	wget -nv "https://gitweb.torproject.org/tor-browser.git/plain/browser/app/profile/000-tor-browser.js?h=$(TBBBRANCH)" -O $@
+	wget -nv "https://gitweb.torproject.org/tor-browser.git/plain/browser/app/profile/$@?h=$(TBBBRANCH)" -O $@
 
 .PHONY: tbb-diff
 tbb-diff: 000-tor-browser.js
