@@ -115,7 +115,7 @@ user_pref("dom.event.clipboardevents.enabled",			true); // to allow copy and pas
 // PREF: Disable "copy to clipboard" functionality via Javascript (Firefox >= 41)
 // NOTICE: Disabling clipboard operations will break legitimate JS-based "copy to clipboard" functionality
 // https://hg.mozilla.org/mozilla-central/rev/2f9f8ea4b9c3
-user_pref("dom.allow_cut_copy", false); // to allow copy and paste on Google Docs
+user_pref("dom.allow_cut_copy", true); // to allow copy and paste on Google Docs
 
 // PREF: Disable speech recognition
 // https://dvcs.w3.org/hg/speech-api/raw-file/tip/speechapi.html
