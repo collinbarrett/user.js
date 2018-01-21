@@ -972,7 +972,7 @@ user_pref("security.ssl.enable_ocsp_must_staple",		true);
 // Disabling this will make OCSP bypassable by MitM attacks suppressing OCSP responses
 // NOTICE: `security.OCSP.require` will make the connection fail when the OCSP responder is unavailable
 // NOTICE: `security.OCSP.require` is known to break browsing on some [captive portals](https://en.wikipedia.org/wiki/Captive_portal)
-user_pref("security.OCSP.require",				true);
+user_pref("security.OCSP.require",				false); // to avoid sporadic failures to Google and others described here: https://github.com/pyllyukko/user.js/issues/321
 
 // PREF: Disable TLS Session Tickets
 // https://www.blackhat.com/us-13/briefings.html#NextGen
