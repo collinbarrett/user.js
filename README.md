@@ -89,9 +89,10 @@ Copy the produced file to the Firefox installation directory. The file should be
 | Windows        | `C:\Program Files (x86)\Mozilla Firefox\mozilla.cfg`       |
 | Linux          | `/etc/firefox/syspref.js`, for older versions: `/etc/firefox/firefox.js` |
 | Linux (Debian) | `/etc/firefox-esr/firefox-esr.js`                          |
+| Linux (Gentoo, Archlinux) | `/usr/lib/firefox/mozilla.cfg`, might also be `/usr/lib32/` or `/usr/lib64/` |
 | OS X           | `/Applications/Firefox.app/Contents/Resources/mozilla.cfg` |
 
-#### Additional installation steps for Windows/OS X
+#### Additional installation steps for Windows / OS X / Gentoo / Archlinux
 
 Create `local-settings.js` in Firefox installation directory, with the following contents:
 
@@ -106,6 +107,7 @@ This file should be located at:
 | ------- | ------------------------------------------------------------ |
 | Windows | `C:\Program Files (x86)\Mozilla Firefox\defaults\pref\`      |
 | OS X    | `/Applications/Firefox.app/Contents/Resources/defaults/pref` |
+| Linux (Gentoo, Archlinux) | `/usr/lib/firefox/defaults/pref/`, might also be `/usr/lib32/` or `/usr/lib64/` |
 
 If `mozilla.cfg` still fails to load, you must add a blank comment to the top of `mozilla.cfg` like so:
 ```
@@ -428,7 +430,6 @@ Hardening your often implies a trade-off with ease-of-use and comes with reduced
 * Spoofing referers breaks visualisation of 3rd-party sites on the Lightbeam addon
 * Spoofing referers disables CSRF protection on some login pages not implementing origin-header/cookie+token based CSRF protection
 * Blocking 3rd-party cookies breaks a number of payment gateways
-* Breaks Firefox addon "Cookie AutoDelete" as of February 2018
 * You can not view or inspect cookies when in private browsing: https://bugzilla.mozilla.org/show_bug.cgi?id=823941
 * When Javascript is enabled, Websites can detect use of Private Browsing mode
 * Private browsing breaks Kerberos authentication
