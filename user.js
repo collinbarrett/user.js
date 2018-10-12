@@ -198,6 +198,9 @@ user_pref("webgl.enable-debug-renderer-info",			false);
 user_pref("dom.maxHardwareConcurrency",				2);
 
 // PREF: Disable WebAssembly
+// https://webassembly.org/
+// https://en.wikipedia.org/wiki/WebAssembly
+// https://trac.torproject.org/projects/tor/ticket/21549
 user_pref("javascript.options.wasm",				false);
 
 /******************************************************************************
@@ -299,12 +302,11 @@ user_pref("javascript.options.asmjs",				false);
 // https://github.com/iSECPartners/publications/tree/master/reports/Tor%20Browser%20Bundle
 user_pref("gfx.font_rendering.opentype_svg.enabled",		false);
 
-// PREF: Disable in-content SVG rendering (Firefox >= 53)
-// NOTICE: Disabling SVG support breaks many UI elements on many sites
+// PREF: Disable in-content SVG rendering (Firefox >= 53) (disabled)
+// NOTICE-DISABLED: Disabling SVG support breaks many UI elements on many sites
 // https://bugzilla.mozilla.org/show_bug.cgi?id=1216893
 // https://github.com/iSECPartners/publications/raw/master/reports/Tor%20Browser%20Bundle/Tor%20Browser%20Bundle%20-%20iSEC%20Deliverable%201.3.pdf#16
-user_pref("svg.disabled", false); // to support YouTube
-
+//user_pref("svg.disabled", true);
 
 // PREF: Disable video stats to reduce fingerprinting threat
 // https://bugzilla.mozilla.org/show_bug.cgi?id=654550
@@ -467,8 +469,10 @@ user_pref("devtools.debugger.force-local",			true);
 // https://wiki.mozilla.org/Security/Reviews/Firefox6/ReviewNotes/telemetry
 // https://gecko.readthedocs.io/en/latest/browser/experiments/experiments/manifest.html
 // https://wiki.mozilla.org/Telemetry/Experiments
+// https://support.mozilla.org/en-US/questions/1197144
 user_pref("toolkit.telemetry.enabled",				false);
 user_pref("toolkit.telemetry.unified",				false);
+user_pref("toolkit.telemetry.archive.enabled",			false);
 user_pref("experiments.supported",				false);
 user_pref("experiments.enabled",				false);
 user_pref("experiments.manifest.uri",				"");
@@ -1007,6 +1011,8 @@ user_pref("security.ssl.disable_session_identifiers",		true);
 // http://kb.mozillazine.org/Security.tls.version.*
 // 1 = TLS 1.0 is the minimum required / maximum supported encryption protocol. (This is the current default for the maximum supported version.)
 // 2 = TLS 1.1 is the minimum required / maximum supported encryption protocol.
+// 3 = TLS 1.2 is the minimum required / maximum supported encryption protocol.
+// 4 = TLS 1.3 is the minimum required / maximum supported encryption protocol.
 user_pref("security.tls.version.min",				1);
 user_pref("security.tls.version.max",				4);
 
