@@ -71,26 +71,27 @@ The file should be located at:
 | OS X                       | `~/Library/Application Support/Firefox/Profiles/XXXXXXXX.your_profile_name`                                                                   |
 | Android                    | `/data/data/org.mozilla.firefox/files/mozilla/XXXXXXXX.your_profile_name` and see [issue #14](https://github.com/pyllyukko/user.js/issues/14) |
 | Sailfish OS + Alien Dalvik | `/opt/alien/data/data/org.mozilla.firefox/files/mozilla/XXXXXXXX.your_profile_name`                                                           |
-| Windows (portable)         | `[firefox directory]\Data\profile\`                                       |
+| Windows (portable)         | `[firefox directory]\Data\profile\`                                                                                                           |
 
 With this installation method, if you change any of `user.js` settings through [`about:config`](http://kb.mozillazine.org/About:config) or Firefox preferences dialogs, they will be reset to the `user.js` defined values after you restart Firefox. This makes sure they're always back to secure defaults when starting the browser. However this prevents persistently changing settings you don't consider appropriate. Either edit `user.js` directly, or use the system-wide installation method described below.
 
 ### System-wide installation (all platforms)
 
-Generate a file suitable for system-wide installation, by running ```make``` with one of the following targets:
+Generate a file suitable for system-wide installation, by running `make` with one of the following targets:
 
-* ```systemwide_user.js```: (the value will be used as default value for all Firefox Profiles where it is not explicitly set, it can be changed in `about:config` and is kept across browser sessions)
-* ```locked_user.js```: (the value will be used as default value on Firefox profile creation, will be locked and can't be changed) in `user.js` or in Firefox's `about:config` or settings.
+* `systemwide_user.js`: (the value will be used as default value for all Firefox Profiles where it is not explicitly set, it can be changed in `about:config` and is kept across browser sessions)
+* `locked_user.js`: (the value will be used as default value on Firefox profile creation, will be locked and can't be changed) in `user.js` or in Firefox's `about:config` or settings.
+* `debian_locked.js`: Debian specific. Users are not able to override preferences. See [#415](https://github.com/pyllyukko/user.js/issues/415).
 
 Copy the produced file to the Firefox installation directory. The file should be located at:
 
-| OS             | Path                                                       |
-| -------------- | ---------------------------------------------------------- |
-| Windows        | `C:\Program Files (x86)\Mozilla Firefox\mozilla.cfg`       |
-| Linux          | `/etc/firefox/syspref.js`, for older versions: `/etc/firefox/firefox.js` |
-| Linux (Debian) | `/etc/firefox-esr/firefox-esr.js`                          |
+| OS                        | Path                                                                         |
+| ------------------------- | ---------------------------------------------------------------------------- |
+| Windows                   | `C:\Program Files (x86)\Mozilla Firefox\mozilla.cfg`                         |
+| Linux                     | `/etc/firefox/syspref.js`, for older versions: `/etc/firefox/firefox.js`     |
+| Linux (Debian)            | `/etc/firefox-esr/firefox-esr.js`                                            |
 | Linux (Gentoo, Archlinux) | `/usr/lib/firefox/mozilla.cfg`, might also be `/usr/lib32/` or `/usr/lib64/` |
-| OS X           | `/Applications/Firefox.app/Contents/Resources/mozilla.cfg` |
+| OS X                      | `/Applications/Firefox.app/Contents/Resources/mozilla.cfg`                   |
 
 #### Additional installation steps for Windows / OS X / Gentoo / Archlinux
 
@@ -103,10 +104,10 @@ pref("general.config.filename", "mozilla.cfg");
 
 This file should be located at:
 
-| OS      | Path                                                         |
-| ------- | ------------------------------------------------------------ |
-| Windows | `C:\Program Files (x86)\Mozilla Firefox\defaults\pref\`      |
-| OS X    | `/Applications/Firefox.app/Contents/Resources/defaults/pref` |
+| OS                        | Path                                                                            |
+| ------------------------- | ------------------------------------------------------------------------------- |
+| Windows                   | `C:\Program Files (x86)\Mozilla Firefox\defaults\pref\`                         |
+| OS X                      | `/Applications/Firefox.app/Contents/Resources/defaults/pref`                    |
 | Linux (Gentoo, Archlinux) | `/usr/lib/firefox/defaults/pref/`, might also be `/usr/lib32/` or `/usr/lib64/` |
 
 If `mozilla.cfg` still fails to load, you must add a blank comment to the top of `mozilla.cfg` like so:
@@ -118,12 +119,12 @@ If `mozilla.cfg` still fails to load, you must add a blank comment to the top of
 
 For any of the above methods, you can keep your browser's `user.js` with the latest version available here: Clone the repository, and create a symbolic link from the appropriate location to the `user.js` file in the repository. Just run `git pull` in the repository when you want to update, then restart Firefox:
 
-````
+```
 cd ~/.mozilla/firefox
 git clone 'https://github.com/pyllyukko/user.js.git'
 cd XXXXXXXX.your_profile_name
 ln -s ../user.js/user.js user.js
-````
+```
 
 ### Verifying
 
@@ -143,7 +144,6 @@ Some of the settings in this `user.js` file might seem redundant, as some of the
 
 HTML5 / [APIs](https://wiki.mozilla.org/WebAPI) / [DOM](https://en.wikipedia.org/wiki/Document_Object_Model) related settings. Mozilla is keen to implement every new HTML5 feature, which have had unforeseen security or privacy implications. This section disables many of those new and yet to be proven technologies.
 * Disable Service Workers [ [1](https://developer.mozilla.org/en-US/docs/Web/API/Worker) [2](https://developer.mozilla.org/en-US/docs/Web/API/ServiceWorker_API) [3](https://wiki.mozilla.org/Firefox/Push_Notifications#Service_Workers) ]
-* Disable Web Workers [ [1](https://developer.mozilla.org/en-US/docs/Web/API/Web_Workers_API/Using_web_workers) [2](https://www.w3schools.com/html/html5_webworkers.asp) ]
 * Disable web notifications [ [1](https://support.mozilla.org/en-US/questions/1140439) ]
 * Disable DOM timing API [ [1](https://wiki.mozilla.org/Security/Reviews/Firefox/NavigationTimingAPI) [2](https://www.w3.org/TR/navigation-timing/#privacy) ]
 * Make sure the User Timing API does not provide a new high resolution timestamp [ [1](https://trac.torproject.org/projects/tor/ticket/16336) [2](https://www.w3.org/TR/2013/REC-user-timing-20131212/#privacy-security) ]
@@ -232,6 +232,7 @@ Harden preferences related to external plugins
 ### Firefox (anti-)features / components
 
 Disable Firefox integrated metrics/reporting/experiments, disable potentially insecure/invasive/[undesirable](https://en.wikipedia.org/wiki/Feature_creep) features
+* Disable Extension recommendations (Firefox >= 65) [ [1](https://support.mozilla.org/en-US/kb/extension-recommendations) ]
 * Disable WebIDE [ [1](https://trac.torproject.org/projects/tor/ticket/16222) [2](https://developer.mozilla.org/docs/Tools/WebIDE) ]
 * Disable remote debugging [ [1](https://developer.mozilla.org/en-US/docs/Tools/Remote_Debugging/Debugging_Firefox_Desktop) [2](https://developer.mozilla.org/en-US/docs/Tools/Tools_Toolbox#Advanced_settings) ]
 * Disable Mozilla telemetry/experiments [ [1](https://wiki.mozilla.org/Platform/Features/Telemetry) [2](https://wiki.mozilla.org/Privacy/Reviews/Telemetry) [3](https://wiki.mozilla.org/Telemetry) [4](https://www.mozilla.org/en-US/legal/privacy/firefox.html#telemetry) [5](https://support.mozilla.org/t5/Firefox-crashes/Mozilla-Crash-Reporter/ta-p/1715) [6](https://wiki.mozilla.org/Security/Reviews/Firefox6/ReviewNotes/telemetry) [7](https://gecko.readthedocs.io/en/latest/browser/experiments/experiments/manifest.html) [8](https://wiki.mozilla.org/Telemetry/Experiments) [9](https://support.mozilla.org/en-US/questions/1197144) ]
@@ -242,7 +243,7 @@ Disable Firefox integrated metrics/reporting/experiments, disable potentially in
 * Disable the UITour backend [ [1](https://trac.torproject.org/projects/tor/ticket/19047#comment:3) ]
 * Enable Firefox Tracking Protection [ [1](https://wiki.mozilla.org/Security/Tracking_protection) [2](https://support.mozilla.org/en-US/kb/tracking-protection-firefox) [3](https://support.mozilla.org/en-US/kb/tracking-protection-pbm) [4](https://kontaxis.github.io/trackingprotectionfirefox/) [5](https://feeding.cloud.geek.nz/posts/how-tracking-protection-works-in-firefox/) ]
 * Enable contextual identity Containers feature (Firefox >= 52)
-* Enable hardening against various fingerprinting vectors (Tor Uplift project) [ [1](https://wiki.mozilla.org/Security/Tor_Uplift/Tracking) [2](https://bugzilla.mozilla.org/show_bug.cgi?id=1333933) ]
+* Enable Firefox's anti-fingerprinting mode ("resist fingerprinting" or RFP) (Tor Uplift project) [ [1](https://wiki.mozilla.org/Security/Tor_Uplift/Tracking) [2](https://bugzilla.mozilla.org/show_bug.cgi?id=1333933) [3](https://wiki.mozilla.org/Security/Fingerprinting) ]
 * Disable the built-in PDF viewer [ [1](https://web.nvd.nist.gov/view/vuln/detail?vulnId=CVE-2015-2743) [2](https://blog.mozilla.org/security/2015/08/06/firefox-exploit-found-in-the-wild/) [3](https://www.mozilla.org/en-US/security/advisories/mfsa2015-69/) ]
 * Disable collection/sending of the health report (healthreport.sqlite*) [ [1](https://support.mozilla.org/en-US/kb/firefox-health-report-understand-your-browser-perf) [2](https://gecko.readthedocs.org/en/latest/toolkit/components/telemetry/telemetry/preferences.html) ]
 * Disable Heartbeat  (Mozilla user rating telemetry) [ [1](https://wiki.mozilla.org/Advocacy/heartbeat) [2](https://trac.torproject.org/projects/tor/ticket/19047) ]
@@ -381,7 +382,7 @@ This section tweaks the cipher suites used by Firefox. The idea is to support on
 * If a plugin is absolutely required, [check for plugin updates](https://www.mozilla.org/en-US/plugincheck/)
 * Create different [profiles][15] for different purposes
 * Change the Firefox's built-in tracking protection to use the [strict list](https://support.mozilla.org/en-US/kb/tracking-protection-pbm?as=u#w_change-your-block-list)
-* Change the timezone for Firefox by using the ```TZ``` environment variable (see [here](https://wiki.archlinux.org/index.php/Firefox_privacy#Change_browser_time_zone)) to reduce it's value in browser fingerprinting
+* Change the timezone for Firefox by using the `TZ` environment variable (see [here](https://wiki.archlinux.org/index.php/Firefox_privacy#Change_browser_time_zone)) to reduce it's value in browser fingerprinting
 * If you are concerned about more advanced threats, use specialized hardened operating systems and browsers such as [Tails](https://tails.boum.org/) or [Tor Brower Bundle](https://www.torproject.org/projects/torbrowser.html.en)
 
 
@@ -416,7 +417,6 @@ Hardening your often implies a trade-off with ease-of-use and comes with reduced
 
 <!-- BEGIN PROBLEMS-LIMITATIONS -->
 * Disabling ServiceWorkers breaks functionality on some sites (Google Street View...)
-* Disabling Web Workers breaks "Download as ZIP" functionality on https://mega.nz/, WhatsApp Web and probably others
 * Disabling WebRTC breaks peer-to-peer file sharing tools (reep.io ...)
 * Disabling clipboard events breaks Ctrl+C/X/V copy/cut/paste functionaility in JS-based web applications (Google Docs...)
 * Disabling clipboard operations will break legitimate JS-based "copy to clipboard" functionality
@@ -424,6 +424,7 @@ Hardening your often implies a trade-off with ease-of-use and comes with reduced
 * Disabling nonessential protocols breaks all interaction with custom protocols such as mailto:, irc:, magnet: ... and breaks opening third-party mail/messaging/torrent/... clients when clicking on links with these protocols
 * Disabling system add-on updates prevents Mozilla from "hotfixing" your browser to patch critical problems (one possible use case from the documentation)
 * Containers are not available in Private Browsing mode
+* RFP breaks some keyboard shortcuts used in certain websites (see #443)
 * Fully automatic updates are disabled and left to package management systems on Linux. Windows users may want to change this setting.
 * Update check page might incorrectly report Firefox ESR as out-of-date
 * Do No Track must be enabled manually
@@ -431,6 +432,8 @@ Hardening your often implies a trade-off with ease-of-use and comes with reduced
 * Spoofing referers breaks visualisation of 3rd-party sites on the Lightbeam addon
 * Spoofing referers disables CSRF protection on some login pages not implementing origin-header/cookie+token based CSRF protection
 * Blocking 3rd-party cookies breaks a number of payment gateways
+* First-party isolation breaks Microsoft Teams
+* First-party isolation causes HTTP basic auth to ask for credentials for every new tab (see #425)
 * You can not view or inspect cookies when in private browsing: https://bugzilla.mozilla.org/show_bug.cgi?id=823941
 * When Javascript is enabled, Websites can detect use of Private Browsing mode
 * Private browsing breaks Kerberos authentication
@@ -484,7 +487,7 @@ See `lockPref` in [System-wide installation](#system-wide-installation).
 
 Yes please! All issues and pull requests are more than welcome. Please try
 to break down your pull requests or commits into small / manageable entities,
-so they are easier to process. All the settings in the ```user.js``` file
+so they are easier to process. All the settings in the `user.js` file
 should have some official references to them, so the effect of those settings
 can be easily verified from Mozilla's documentation.
 
@@ -544,6 +547,7 @@ For more information, see [CONTRIBUTING](https://github.com/pyllyukko/user.js/bl
 * [Test page for Firefox's built-in Malware Protection](https://itisatrap.org/firefox/unwanted.html) (unwanted software)
 * [HTML5test](https://html5test.com/) - Comparison of supported HTML5 features in various browsers/versions
 * [Filldisk](http://www.filldisk.com/)
+* [BrowserAudit](https://browseraudit.com/)
 
 
 ---------------------------------------------------------------------------
