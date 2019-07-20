@@ -472,6 +472,7 @@ user_pref("devtools.debugger.force-local",			true);
 // https://gecko.readthedocs.io/en/latest/browser/experiments/experiments/manifest.html
 // https://wiki.mozilla.org/Telemetry/Experiments
 // https://support.mozilla.org/en-US/questions/1197144
+// https://firefox-source-docs.mozilla.org/toolkit/components/telemetry/telemetry/internals/preferences.html#id1
 user_pref("toolkit.telemetry.enabled",				false);
 user_pref("toolkit.telemetry.unified",				false);
 user_pref("toolkit.telemetry.archive.enabled",			false);
@@ -1029,7 +1030,7 @@ user_pref("security.tls.version.max",				4);
 // https://github.com/pyllyukko/user.js/pull/206#issuecomment-280229645
 user_pref("security.tls.version.fallback-limit",		3);
 
-// PREF: Enfore Public Key Pinning
+// PREF: Enforce Public Key Pinning
 // https://en.wikipedia.org/wiki/HTTP_Public_Key_Pinning
 // https://wiki.mozilla.org/SecurityEngineering/Public_Key_Pinning
 // "2. Strict. Pinning is always enforced."
