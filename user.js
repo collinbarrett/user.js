@@ -714,7 +714,7 @@ user_pref("network.http.referer.spoofSource",			true);
 
 // PREF: Don't send referer headers when following links across different domains (disabled)
 // https://github.com/pyllyukko/user.js/issues/227
-user_pref("network.http.referer.XOriginPolicy",		2);
+// user_pref("network.http.referer.XOriginPolicy",		2);
 
 // PREF: Accept Only 1st Party Cookies
 // http://kb.mozillazine.org/Network.cookie.cookieBehavior#1
